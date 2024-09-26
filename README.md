@@ -37,25 +37,28 @@ Verilog Code for Seven-Segment Display
 
 // seven_segment_display.v
 module seven_segment_display (
-    input wire [3:0] binary_input,
-    output reg [6:0] seg_output
+    input wire [3:0] bcd,
+    output reg [6:0] seg
 );
     always @(*) begin
-        case (binary_input)
-            4'b0000: seg_output = 7'b0111111; // 0
-            4'b0001: seg_output = 7'b0000110; // 1
-            4'b0010: seg_output = 7'b1011011; // 2
-            4'b0013: seg_output = 7'b1001111; // 3
-            4'b0100: seg_output = 7'b1100110; // 4
-            4'b0101: seg_output = 7'b1101101; // 5
-            4'b0110: seg_output = 7'b1111101; // 6
-            4'b0111: seg_output = 7'b0000111; // 7
-            4'b1000: seg_output = 7'b1111111; // 8
-            4'b1001: seg_output = 7'b1101111; // 9
-            default: seg_output = 7'b0000000; // blank or error
+        case (bcd)
+            4'b0000: seg = 7'b0111111; 
+            4'b0001: seg = 7'b0000110; 
+            4'b0010: seg = 7'b1011011; 
+            4'b0011: seg = 7'b1001111; 
+            4'b0100: seg = 7'b1100110; 
+            4'b0101: seg = 7'b1101101; 
+            4'b0110: seg = 7'b1111101; 
+            4'b0111: seg = 7'b0000111; 
+            4'b1000: seg = 7'b1111111; 
+            4'b1001: seg = 7'b1101111;
+            default: seg = 7'b0000000; 
         endcase
-    end
+    end
 endmodule
+
+output : ![Screenshot 2024-09-26 142952](https://github.com/user-attachments/assets/86e51b4f-c5b3-44d9-8ce3-babc4e9fe5a7)
+
 
 
 Testbench for Seven-Segment Display:
